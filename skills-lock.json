@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "x-research": {
+      "source": "rohunvora/x-research-skill",
+      "sourceType": "github",
+      "computedHash": "c50d1e5b86690dc4dc0cd048db7d6ebccfc8b212e95204d6de210969e92fee0a"
+    }
+  }
+}

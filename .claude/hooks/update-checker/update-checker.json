@@ -1,0 +1,33 @@
+{
+  "check_interval_days": 7,
+  "plugins": {
+    "superpowers@superpowers-marketplace": {
+      "remote": "https://github.com/obra/superpowers.git"
+    },
+    "context7@claude-plugins-official": {},
+    "ralph-loop@claude-plugins-official": {},
+    "github@claude-plugins-official": {},
+    "playwright@claude-plugins-official": {},
+    "code-simplifier@claude-plugins-official": {},
+    "figma@claude-plugins-official": {},
+    "atlassian@claude-plugins-official": {},
+    "playground@claude-plugins-official": {},
+    "asana@claude-plugins-official": {}
+  },
+  "npm_packages": [
+    "@upstash/context7-mcp",
+    "@playwright/mcp",
+    "deepwiki-mcp"
+  ],
+  "http_health": {
+    "github": "https://api.githubcopilot.com/mcp/",
+    "asana": "https://mcp.asana.com/sse",
+    "atlassian": "https://mcp.atlassian.com/v1/mcp",
+    "figma": "https://mcp.figma.com/mcp"
+  },
+  "repos_to_watch": {
+    "padak/claude-code-kit": {
+      "keywords": ["skill", "browser", "hook", "feat", "breaking", "major", "plugin"]
+    }
+  }
+}

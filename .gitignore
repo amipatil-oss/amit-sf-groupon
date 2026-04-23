@@ -1,0 +1,50 @@
+# Project repos live here as independent git repos
+projects/*
+!projects/.gitkeep
+
+# Temporary downloads and scratch files
+temp/*
+!temp/.gitkeep
+
+# Action logs
+logs/*
+!logs/.gitkeep
+
+# Local settings stay local (personal paths, not for public repos)
+.claude/settings.local.json
+
+# Update checker state files
+.claude/hooks/update-checker/.last_check
+.claude/hooks/update-checker/.check_results
+.claude/hooks/update-checker/.npm_versions
+
+# Git sync state files
+.claude/hooks/git-sync/.sync.log
+.claude/hooks/git-sync/.sync-stdout.log
+.claude/hooks/git-sync/.sync-stderr.log
+
+# MCP server state
+.playwright-mcp/
+
+# Agent and tool state
+.agent/
+.agents/
+.wrangler/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Groupon internal content (confidential — sourced from internal Confluence/sites)
+.claude/skills/groupon-enterprise-architect/data/
+.claude/skills/groupon-enterprise-architect/references/
+docs/groupon-operating-principles.md
+docs/groupon-platform-architecture.md
+
+# OS files
+.DS_Store
+.claude/hooks/git-sync/.sync.lock
+CoS.code-workspace
+.idea/
+CoS projects
