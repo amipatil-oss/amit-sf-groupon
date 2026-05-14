@@ -1,6 +1,6 @@
 ---
 name: log-tempo
-description: Log today's 8 hours to Tempo (Jira time tracker). Fetches Google Calendar + Jira tickets + today's git commits, infers ticket mapping via AI, scales to exactly 8h, shows a draft for review, and logs only after explicit confirmation. Also runs on cron at 8 PM IST — in that mode it emails a draft instead of logging interactively.
+description: Log today's 8 hours to Jira (native worklog API). Fetches Google Calendar + Jira tickets + today's git commits, infers ticket mapping via AI, scales to exactly 8h, shows a draft for review, and logs only after explicit confirmation. Also runs on cron at 8 PM IST — in that mode it emails a draft instead of logging interactively.
 ---
 
 # Log Tempo Hours
@@ -17,8 +17,6 @@ Check these env vars. If any are missing, tell the user which one is missing and
 
 | Env Var | Required |
 |---|---|
-| `TEMPO_API_TOKEN` | Yes — see references/tempo-api.md |
-| `JIRA_ACCOUNT_ID` | Yes — see references/tempo-api.md |
 | `JIRA_API_TOKEN` | Yes — get at https://id.atlassian.com/manage-profile/security/api-tokens |
 | `GOOGLE_CALENDAR_CREDENTIALS` | Yes — see references/gcal-auth.md |
 
@@ -32,7 +30,6 @@ cd /Users/amipatil/Desktop/CoS && python3 scripts/tempo_log/main.py
 
 Parse the JSON output:
 - If `"error"` key present → tell user which env vars are missing and stop.
-- If `already_logged: true` → tell user "8h already logged in Tempo for today" and stop.
 - Proceed with `calendar_events[]`, `jira_tickets[]`, and `git_commits[]`.
 
 **First-run note:** If `GOOGLE_CALENDAR_CREDENTIALS` is set but no token file exists yet, a browser window will open for OAuth consent. Tell the user: "A browser window is opening for Google Calendar authorization — please sign in and grant calendar read access. This only happens once."
@@ -124,10 +121,10 @@ Stop — do NOT log to Tempo yet.
 
 ---
 
-## Step 6 — Log to Tempo
+## Step 6 — Log to Jira
 
 ```bash
-cd /Users/amipatil/Desktop/CoS && python3 scripts/tempo_log/post_tempo.py \
+cd /Users/amipatil/Desktop/CoS && python3 scripts/tempo_log/post_worklogs.py \
   '{"entries": <SCALED_ENTRIES>, "date": "YYYY-MM-DD"}'
 ```
 
@@ -137,7 +134,7 @@ Parse results:
 
 **All succeeded:**
 ```
-✓ Logged 8h to Tempo for YYYY-MM-DD
+✓ Logged 8h to Jira for YYYY-MM-DD
   SFDC-XXXX  Xh XXm — <description>
 ```
 
@@ -146,5 +143,5 @@ Parse results:
 ⚠ Partial log:
   ✓ SFDC-XXXX — logged
   ✗ SFDC-YYYY — error: <message>
-  Log manually: https://groupondev.atlassian.net/plugins/servlet/ac/io.tempo.jira/tempo-app
+  Log manually: https://groupondev.atlassian.net/issues
 ```
